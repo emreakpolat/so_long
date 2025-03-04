@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/04 16:11:56 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:29:19 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,25 @@ static void     door_check(char **map)
         error("Error. There is no exit door\n");
 }
 
-static void     wall_check(char **map)
+static void     rectangle_check(char **map)
 {
     int i;
-    int j;
+    //int j;
+    int x;
+    int y;
 
+    
     i = 0;
-    j = 0;
+    //j = 0;
+    while (map[i][x] != '\n')
+        x++;
+    printf("satır: %d\n", x);
+    while (map[y])
+        y++;
+    printf("sütun: %d\n", y);
+    
+
+    
     
 }
 
@@ -102,24 +114,7 @@ void    map_control(char **map)
     coin_check(map);
     character_check(map);
     door_check(map);
-    wall_check()
+    rectangle_check(map);
     
-
 }
-    // int i;
 
-    // i = 0;
-    // while (line != NULL)
-    // {
-    //     printf("line: %s\n", line);
-
-    //     if (line[i] != '1' && (line[i] != '\n' && line[i] != '\0'))
-    //     {
-    //         printf("line: %s\n", line);
-    //         error("Hata, duvar yok!\n");
-    //     }
-    //     if(line[i] == '\n')
-    //         i = 0;
-    //     i++;
-    //     line = get_next_line(fd);
-    // }
