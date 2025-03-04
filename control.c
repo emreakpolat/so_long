@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/04 14:23:41 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:11:22 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ static void coin_check(char **map)
 
     i = 0;
     coin_count = 0;
-    while (map[i])
+    while (map[i] != NULL)
     {
+        printf("%s\n ", map[i]);
         j = 0;
         while (map[i][j])
         {
@@ -78,14 +79,18 @@ static void     door_check(char **map)
         i++;
     }
     if (door_count != 1)
-        error("Error. There is no character\n");
+        error("Error. There is no exit door\n");
 }
 
 void    map_control(char **map)
 {
+    if (map == NULL)
+        error("Error. There is no map\n");
+    
     coin_check(map);
+    printf("burada\n");
     character_check(map);
-    door_check()
+    door_check(map);
     //wall_check()
     
 

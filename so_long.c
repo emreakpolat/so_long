@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:26 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/04 13:24:08 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:13:28 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,10 @@ void error(char *str)
     exit(EXIT_FAILURE);
 }
 
-void free_function(t_gnl *root)
+static char **gnl_read(int fd)
 {
-    int i = 0;
-    
-    while (root->map[i])
-    {
-        free(root->map[i]);
-        i++;
-    }
-    free(root->map);
-    free(root);
-}
-int main()
-{
+    int i;
     int line_count;
-    int fd = open("map.ber", O_RDONLY);
     char *line;
     char **map;
 
@@ -42,19 +30,27 @@ int main()
         line_count++;
     free(line);
     close(fd);
-    map =(char **)malloc(sizeof(char **) * line_count);
+
+    map =(char **)malloc(sizeof(char **) * (line_count + 1));
     fd = open("map.ber", O_RDONLY);
-    line_count = 0;
+
+    i = 0;
     while ((line = get_next_line(fd)) != NULL)
     {
-        map[line_count] =(char *)malloc(sizeof(char *) * ft_strlen(line));
-        map[line_count] = line;
-        line_count++;
+        map[i] =(char *)malloc(sizeof(char *) * ft_strlen(line));
+        map[i] = line;
+        i++;
     }
-    line_count = 0;
-    while (map[line_count])
-    {
-        map_control(map);
-        line_count++;
-    }
+    map[i] = NULL;
+    return (map);
+}
+int main()
+{
+    int fd;
+    char **map;
+
+    fd = open("map.ber", O_RDONLY);
+    map = gnl_read(fd);
+
+    map_control(map);
 }
