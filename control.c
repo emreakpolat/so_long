@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/04 15:11:22 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:11:56 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void coin_check(char **map)
     coin_count = 0;
     while (map[i] != NULL)
     {
-        printf("%s\n ", map[i]);
         j = 0;
         while (map[i][j])
         {
@@ -72,6 +71,9 @@ static void     door_check(char **map)
         j = 0;
         while (map[i][j])
         {
+            if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'P' 
+            && map[i][j] != 'E' && map[i][j] != 'C' && map[i][j] != '\n')
+                error("Error. This is not a map\n");
             if (map[i][j] == 'E')
                 door_count++;
             j++;
@@ -82,16 +84,25 @@ static void     door_check(char **map)
         error("Error. There is no exit door\n");
 }
 
+static void     wall_check(char **map)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    
+}
+
+
 void    map_control(char **map)
 {
     if (map == NULL)
         error("Error. There is no map\n");
-    
     coin_check(map);
-    printf("burada\n");
     character_check(map);
     door_check(map);
-    //wall_check()
+    wall_check()
     
 
 }
