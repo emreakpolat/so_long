@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/04 16:29:19 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/07 08:15:58 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,22 +87,34 @@ static void     door_check(char **map)
 static void     rectangle_check(char **map)
 {
     int i;
-    //int j;
+    int j;
     int x;
     int y;
 
     
     i = 0;
-    //j = 0;
+    x = 0;
+    y = 0;
+    j = 0;
     while (map[i][x] != '\n')
         x++;
     printf("satır: %d\n", x);
-    while (map[y])
+    while (map[y] != NULL && map[y][0] != '\n' && map[y][0] != '\0')
         y++;
     printf("sütun: %d\n", y);
-    
-
-    
+    while (map[i])
+    {
+        // while (map[i])
+        // {
+        //     /* code */
+        // }
+        
+        if ((map[i + 1] != NULL && map[i + 1][0] != '\n') && (ft_strlen(map[i]) != ft_strlen(map[i + 1])))
+        {
+            error("Error. Map size is diffrent\n");
+        }
+        i++;
+    }
     
 }
 
