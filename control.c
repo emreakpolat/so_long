@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/07 08:15:58 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/07 08:36:44 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,24 +98,19 @@ static void     rectangle_check(char **map)
     j = 0;
     while (map[i][x] != '\n')
         x++;
-    printf("satır: %d\n", x);
     while (map[y] != NULL && map[y][0] != '\n' && map[y][0] != '\0')
         y++;
-    printf("sütun: %d\n", y);
     while (map[i])
     {
-        // while (map[i])
-        // {
-        //     /* code */
-        // }
-        
-        if ((map[i + 1] != NULL && map[i + 1][0] != '\n') && (ft_strlen(map[i]) != ft_strlen(map[i + 1])))
-        {
-            error("Error. Map size is diffrent\n");
-        }
+        j = 0;
+        while (map[i][j] != '\n' && map[i][j] != '\0')
+            j++;
+        if (j != x)
+            error("Error. Map is not rectangular\n");
+        if ((map[i + 1] != NULL) && (map[i + 1][0] == '\0' || map[i + 1][0] == '\n'))
+            printf("burada\n");
         i++;
     }
-    
 }
 
 
