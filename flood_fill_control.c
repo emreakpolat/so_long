@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/08 22:58:18 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/09 00:52:38 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,44 @@ void flood_fill(char **map, int y, int x)
 
     map[y][x] = 1;
 
-    flood_fill(map, y + 1, x);
-    flood_fill(map, y - 1, x);
-    flood_fill(map, y, x + 1);
-    flood_fill(map, y, x - 1);
+    flood_fill(map, (y + 1), x);
+    flood_fill(map, (y - 1), x);
+    flood_fill(map, y, (x + 1));
+    flood_fill(map, y, (x - 1));
 }
 
-void flood_fill_check(char **map)
+char **map_copy(char **cpy_map, char **map, int size)
 {
     int i;
-    int x;
-    int y;
-    char **copy_map;
+    int j;
 
-    copy_map = malloc(5);
-    
+    cpy_map = malloc(sizeof(char *) * (size+1));
     i = 0;
     while (map[i])
     {
-        copy_map[i] = malloc(sizeof(14));
-        copy_map[i] = map[i];
+        cpy_map[i] = malloc(ft_strlen(map[i]) + 1);
+        j = 0;
+        while (map[i][j])
+        {
+            
+            cpy_map[i][j] = map[i][j];
+            printf("%c\n",map[i][j]);
+            j++;
+        }
+        cpy_map[i][j] = '\0';
         i++;
     }
-    x = 0;
-    y = 0;
+    cpy_map[i] = NULL;
+    return cpy_map;
+}
+
+void flood_fill_check(char **map, int i, int j, int x, int y)
+{
+    char **copy_map;
+    copy_map = NULL;
+    j = 0;
+    copy_map = map_copy(copy_map, map, i + 1);
+
     while (copy_map[y][x] != 'P' && map[y][x] != '\0')
     {
         if (map[y][x] == '\n' || map[y][x] == '\0')
@@ -52,10 +66,6 @@ void flood_fill_check(char **map)
         }
         x++;
     }
-   // flood_fill(copy_map,y,x);
-    //printf("x=%d y=%d\n",x,y);
-    copy_map[0][0]='C';
-    map_printf(copy_map);
-    printf("\n------\n");
-    map_printf(map);
+    //map_printf(copy_map);
+    flood_fill(copy_map, y, x);
 }

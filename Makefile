@@ -6,7 +6,7 @@
 #    By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 08:19:37 by makpolat          #+#    #+#              #
-#    Updated: 2025/03/08 21:45:22 by makpolat         ###   ########.fr        #
+#    Updated: 2025/03/09 00:17:07 by makpolat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC	= so_long.c \
 OBJS = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 RM = rm -f
 AR = ar crs
 
