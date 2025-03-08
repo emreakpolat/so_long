@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:26 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/07 15:35:31 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/08 21:44:52 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,18 @@ static char **gnl_read(int fd, char **av)
     map[i] = NULL;
     return (map);
 }
+
+void map_printf(char **map)
+{
+    int i;
+    i=0;
+
+    while (*map)
+    {
+        printf("%s",*map);
+        map++;
+    }
+}
 int main(int ac, char **av)
 {
     if (ac == 2)
@@ -55,5 +67,9 @@ int main(int ac, char **av)
         map = gnl_read(fd, av);
 
         map_control(map);
+        flood_fill_check(map);
+        
     }
+
+    
 }

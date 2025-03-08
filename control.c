@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/07 11:00:17 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:31:12 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void close_check(char **map, int y, int i)
 {
     int j;
     
-    j = 0;
+    j = 0;    
     while (map[i])
     {
         while ((map[0][j] != '\n' && map[0][j] != '\0'))
@@ -141,12 +141,11 @@ void    map_control(char **map)
 {
     if (map == NULL || *map == NULL)
         error("Error. There is no map\n");
-    while (**map == '\n' || **map == '\0')
-        map++;
+    while (**map == '\n')
+        error("Error. Map is newline\n");
     coin_check(map);
     character_check(map);
     door_check(map);
-    rectangle_check(map);
-    
+    rectangle_check(map);    
 }
 
