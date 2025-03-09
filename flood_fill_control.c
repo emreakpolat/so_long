@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/09 06:19:05 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/09 06:21:33 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void map_control_flood_fill(char **map)
         while (map[i][j])
         {
             if (map[i][j] != '1' && map[i][j] != '\0' && map[i][j] != '\n')
-                error("Error. Map is not open\n");
+                error("Error. There is no way to exit\n");
             j++;
         }
         i++;
