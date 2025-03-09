@@ -6,18 +6,18 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/09 00:52:38 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/09 03:06:45 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void flood_fill(char **map, int y, int x)
+static void flood_fill(char **map, int y, int x)
 {
-    if (map[y][x] == 1)
+    if (map[y][x] == '1')
         return;
 
-    map[y][x] = 1;
+    map[y][x] = '1';
 
     flood_fill(map, (y + 1), x);
     flood_fill(map, (y - 1), x);
@@ -25,7 +25,7 @@ void flood_fill(char **map, int y, int x)
     flood_fill(map, y, (x - 1));
 }
 
-char **map_copy(char **cpy_map, char **map, int size)
+static char **map_copy(char **cpy_map, char **map, int size)
 {
     int i;
     int j;
@@ -40,7 +40,6 @@ char **map_copy(char **cpy_map, char **map, int size)
         {
             
             cpy_map[i][j] = map[i][j];
-            printf("%c\n",map[i][j]);
             j++;
         }
         cpy_map[i][j] = '\0';
@@ -66,6 +65,7 @@ void flood_fill_check(char **map, int i, int j, int x, int y)
         }
         x++;
     }
-    //map_printf(copy_map);
+    
+    map_printf(copy_map);
     flood_fill(copy_map, y, x);
 }
