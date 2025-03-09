@@ -6,26 +6,27 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/09 03:21:17 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/09 06:19:05 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void flood_fill(char **map, int y, int x)
+static char **flood_fill(char **map, int y, int x)
 {
     if (map[y][x] == '1')
-        return ;
+        return (0);
 
-    if (map[y][x] == 'E')
-        return ;
     map[y][x] = '1';
 
+    if (map[y][x] == 'E')
+        return (0);
+    
     flood_fill(map, (y + 1), x);
     flood_fill(map, (y - 1), x);
     flood_fill(map, y, (x + 1));
     flood_fill(map, y, (x - 1));
-    
+    return (map);
 }
 
 static char **map_copy(char **cpy_map, char **map, int size)
@@ -52,6 +53,27 @@ static char **map_copy(char **cpy_map, char **map, int size)
     return (cpy_map);
 }
 
+void map_control_flood_fill(char **map)
+{
+    int i;
+    int j;
+
+    i =0;
+    j = 0;
+    while (map[i])
+    {
+        j = 0;
+        while (map[i][j])
+        {
+            if (map[i][j] != '1' && map[i][j] != '\0' && map[i][j] != '\n')
+                error("Error. Map is not open\n");
+            j++;
+        }
+        i++;
+    }
+    
+}
+
 void flood_fill_check(char **map, int i, int j, int x, int y)
 {
     char **copy_map;
@@ -68,6 +90,7 @@ void flood_fill_check(char **map, int i, int j, int x, int y)
         }
         x++;
     }
-    //map_printf(copy_map);
-    flood_fill(copy_map, y, x);
+    copy_map = flood_fill(copy_map, y, x);
+    map_control_flood_fill(copy_map);
+    map_printf(copy_map);
 }
