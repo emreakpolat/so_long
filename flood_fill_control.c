@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/09 03:06:45 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/09 03:21:17 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 static void flood_fill(char **map, int y, int x)
 {
     if (map[y][x] == '1')
-        return;
+        return ;
 
+    if (map[y][x] == 'E')
+        return ;
     map[y][x] = '1';
 
     flood_fill(map, (y + 1), x);
     flood_fill(map, (y - 1), x);
     flood_fill(map, y, (x + 1));
     flood_fill(map, y, (x - 1));
+    
 }
 
 static char **map_copy(char **cpy_map, char **map, int size)
@@ -30,7 +33,7 @@ static char **map_copy(char **cpy_map, char **map, int size)
     int i;
     int j;
 
-    cpy_map = malloc(sizeof(char *) * (size+1));
+    cpy_map = malloc(sizeof(char *) * (size + 1));
     i = 0;
     while (map[i])
     {
@@ -46,7 +49,7 @@ static char **map_copy(char **cpy_map, char **map, int size)
         i++;
     }
     cpy_map[i] = NULL;
-    return cpy_map;
+    return (cpy_map);
 }
 
 void flood_fill_check(char **map, int i, int j, int x, int y)
@@ -54,7 +57,7 @@ void flood_fill_check(char **map, int i, int j, int x, int y)
     char **copy_map;
     copy_map = NULL;
     j = 0;
-    copy_map = map_copy(copy_map, map, i + 1);
+    copy_map = map_copy(copy_map, map, (i + 1));
 
     while (copy_map[y][x] != 'P' && map[y][x] != '\0')
     {
@@ -65,7 +68,6 @@ void flood_fill_check(char **map, int i, int j, int x, int y)
         }
         x++;
     }
-    
-    map_printf(copy_map);
+    //map_printf(copy_map);
     flood_fill(copy_map, y, x);
 }
