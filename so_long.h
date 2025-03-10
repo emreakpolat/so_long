@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:35 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/08 23:45:13 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:17:42 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ char *ft_strjoin(char *s1, char *s2);
 char *ft_strchr(const char *s, int c);
 void error(char *str);
 void map_control(char **map);
-void flood_fill_check(char **map, int i, int j, int x, int y);
-
+void flood_fill_check(char **map, int i, int x, int y);
+void free_all(char **map);
 //sil
 void map_printf(char **map);
 

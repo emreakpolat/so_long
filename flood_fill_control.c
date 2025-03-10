@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/10 14:52:20 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:53:32 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static char **map_copy(char **cpy_map, char **map, int size)
         j = 0;
         while (map[i][j])
         {
-            
             cpy_map[i][j] = map[i][j];
             j++;
         }
@@ -99,17 +98,15 @@ static void accessible_control(char **map)
         }
         i++;
     }
-    
 }
 
-void flood_fill_check(char **map, int i, int j, int x, int y)
+void flood_fill_check(char **map, int i, int x, int y)
 {
     char **copy_map;
     copy_map = NULL;
-    j = 0;
     copy_map = map_copy(copy_map, map, (i + 1));
 
-    while (copy_map[y][x] != 'P' && map[y][x] != '\0')
+    while (copy_map[y][x] != 'P' && copy_map[y][x] != '\0')
     {
         if (map[y][x] == '\n' || map[y][x] == '\0')
         {
@@ -119,7 +116,8 @@ void flood_fill_check(char **map, int i, int j, int x, int y)
         x++;
     }
     copy_map = flood_fill(copy_map, y, x);
-    map_printf(copy_map);
+    //map_printf(copy_map);
     accessible_control(copy_map);
     //map_control_flood_fill(copy_map);
+    //free_all(copy_map);
 }

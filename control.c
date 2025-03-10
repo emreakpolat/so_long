@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/10 14:33:05 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:26:54 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,15 @@ static void     rectangle_check(char **map)
 void    map_control(char **map)
 {
     if (map == NULL || *map == NULL)
+    {
+        free_all(map);
         error("Error.\n There is no map\n");
+    }
     while (**map == '\n')
+    {
+        free_all(map);
         error("Error.\n Map is newline\n");
+    }
     coin_check(map);
     character_check(map);
     door_check(map);
