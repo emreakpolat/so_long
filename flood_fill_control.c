@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/10 13:35:57 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:52:20 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,32 @@ static char **map_copy(char **cpy_map, char **map, int size)
     return (cpy_map);
 }
 
-void map_control_flood_fill(char **map)
+// void map_control_flood_fill(char **map)
+// {
+//     int i;
+//     int j;
+//     int coin_count;
+//     int door_count;
+
+//     i = 0;
+//     j = 0;
+//     coin_count = 0;
+//     door_count = 0;
+//     while (map[i])
+//     {
+//         j = 0;
+//         while (map[i][j])
+//         {
+//             if (map[i][j] != '1' && map[i][j] != '\0' && map[i][j] != '\n')
+//                 error("Error. RRRRInaccessible location on the map.\n");
+//             j++;
+//         }
+//         i++;
+//     }
+    
+// }
+
+static void accessible_control(char **map)
 {
     int i;
     int j;
@@ -66,8 +91,10 @@ void map_control_flood_fill(char **map)
         j = 0;
         while (map[i][j])
         {
-            if (map[i][j] != '1' && map[i][j] != '\0' && map[i][j] != '\n' && map[i][j] != 'E')
-                error("Error. Inaccessible location on the map.\n");
+            if (map[i][j] == 'P' || map[i][j] == 'C')
+            {
+                error("Error\nInaccessible location on the map\n");
+            }
             j++;
         }
         i++;
@@ -93,5 +120,6 @@ void flood_fill_check(char **map, int i, int j, int x, int y)
     }
     copy_map = flood_fill(copy_map, y, x);
     map_printf(copy_map);
-    map_control_flood_fill(copy_map);
+    accessible_control(copy_map);
+    //map_control_flood_fill(copy_map);
 }

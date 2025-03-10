@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/08 14:31:12 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:33:05 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void coin_check(char **map)
         i++;
     }
     if (coin_count < 1)
-        error("Error. There is no coin!\n");
+        error("Error.\n There is no coin!\n");
 }
 
 static void     character_check(char **map)
@@ -54,8 +54,10 @@ static void     character_check(char **map)
         }
         i++;
     }
-    if (character_count != 1)
-        error("Error. There is no character\n");
+    if (character_count < 1)
+        error("Error.\n There is no character\n");
+    if (character_count > 1)
+        error("Error\nToo many character.\n");
 }
 
 static void     door_check(char **map)
@@ -73,15 +75,17 @@ static void     door_check(char **map)
         {
             if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'P' 
             && map[i][j] != 'E' && map[i][j] != 'C' && map[i][j] != '\n')
-                error("Error. This is not a map\n");
+                error("Error.\n This is not a map\n");
             if (map[i][j] == 'E')
                 door_count++;
             j++;
         }
         i++;
     }
-    if (door_count != 1)
-        error("Error. There is no exit door\n");
+    if (door_count < 1)
+        error("Error.\nThere is no exit door\n");
+    if (door_count > 1)
+        error("Error\nToo many exit door.\n");
 }
 
 static void close_check(char **map, int y, int i)
@@ -94,14 +98,14 @@ static void close_check(char **map, int y, int i)
         while ((map[0][j] != '\n' && map[0][j] != '\0'))
         {
             if (map[0][j] != '1')
-                error("Error. Map is not close\n");
+                error("Error.\n Map is not close\n");
             j++;
         }
         j = 0;
         while ((map[y - 1][j] != '\n' && map[y - 1][j] != '\0'))
         {
             if (map[y - 1][j] != '1')
-                error("Error. Map is not close\n");
+                error("Error.\n Map is not close\n");
             j++;
         }
         i++;
@@ -129,9 +133,9 @@ static void     rectangle_check(char **map)
         while (map[i][j] != '\n' && map[i][j] != '\0')
             j++;
         if (j != x)
-            error("Error. Map is not rectangular\n");
+            error("Error.\n Map is not rectangular\n");
         if((map[i][j - 1] != '1') || (map[i][0] != '1'))
-            error("Error. Map is not close\n");
+            error("Error.\n Map is not close\n");
         i++;
     }
 }
@@ -140,9 +144,9 @@ static void     rectangle_check(char **map)
 void    map_control(char **map)
 {
     if (map == NULL || *map == NULL)
-        error("Error. There is no map\n");
+        error("Error.\n There is no map\n");
     while (**map == '\n')
-        error("Error. Map is newline\n");
+        error("Error.\n Map is newline\n");
     coin_check(map);
     character_check(map);
     door_check(map);
