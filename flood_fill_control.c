@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/09 06:21:33 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:35:57 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ static char **flood_fill(char **map, int y, int x)
     if (map[y][x] == '1')
         return (0);
 
-    map[y][x] = '1';
-
     if (map[y][x] == 'E')
         return (0);
+
+    map[y][x] = '1';
+
     
     flood_fill(map, (y + 1), x);
     flood_fill(map, (y - 1), x);
@@ -58,15 +59,15 @@ void map_control_flood_fill(char **map)
     int i;
     int j;
 
-    i =0;
+    i = 0;
     j = 0;
     while (map[i])
     {
         j = 0;
         while (map[i][j])
         {
-            if (map[i][j] != '1' && map[i][j] != '\0' && map[i][j] != '\n')
-                error("Error. There is no way to exit\n");
+            if (map[i][j] != '1' && map[i][j] != '\0' && map[i][j] != '\n' && map[i][j] != 'E')
+                error("Error. Inaccessible location on the map.\n");
             j++;
         }
         i++;
@@ -91,6 +92,6 @@ void flood_fill_check(char **map, int i, int j, int x, int y)
         x++;
     }
     copy_map = flood_fill(copy_map, y, x);
-    map_control_flood_fill(copy_map);
     map_printf(copy_map);
+    map_control_flood_fill(copy_map);
 }
