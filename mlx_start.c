@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:59:55 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/13 16:54:17 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:56:25 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void mlx_file_add(t_general *game)
     game->character = mlx_xpm_file_to_image(game->init, "texture/warrior.xpm", &width, &height);
     game->coin = mlx_xpm_file_to_image(game->init, "texture/skeleton.xpm", &width, &height);
     game->door = mlx_xpm_file_to_image(game->init, "texture/door.xpm", &width, &height);
+    game->floor = mlx_xpm_file_to_image(game->init, "texture/back_ground.xpm", &width, &height);
 }
 
 static void mlx_all_add(char **map, t_general *game)
@@ -61,6 +62,8 @@ static void mlx_all_add(char **map, t_general *game)
                 mlx_put_image_to_window(game->init,game->win, game->coin, j * 64, i * 64);
             else if(map[i][j] == 'E')
                 mlx_put_image_to_window(game->init,game->win, game->door, j * 64, i * 64);
+            else if(map[i][j] == '0')
+                mlx_put_image_to_window(game->init,game->win, game->floor, j * 64, i * 64);
             j++;
         }
         i++;
@@ -76,7 +79,6 @@ t_general create_map(t_general game, char **map)
     game.win=mlx_new_window(game.init, (64 * game.game_width) ,(64 * game.game_height) ,"hollao WOrld42");
     mlx_file_add(&game);
     mlx_all_add(map, &game);
-    
     mlx_loop(game.init);
     
     
