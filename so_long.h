@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:35 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/13 13:56:32 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:05:58 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct so_long
     void *init; 
     void *win;
     void *wall;
+    void *character;
     
 } t_general;
 

@@ -6,7 +6,7 @@
 #    By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 08:19:37 by makpolat          #+#    #+#              #
-#    Updated: 2025/03/13 13:50:29 by makpolat         ###   ########.fr        #
+#    Updated: 2025/03/13 15:49:29 by makpolat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ CFLAGS = -g
 RM = rm -f
 AR = ar crs
 MLX_FLAGS=-L minilibx -lmlx -L/usr/X11R6/lib -lXext -lX11 -lm -lbsd
-
 
 all: $(NAME)
 
