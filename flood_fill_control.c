@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/10 15:53:32 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:34:18 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ void flood_fill_check(char **map, int i, int x, int y)
         }
         x++;
     }
+    
     copy_map = flood_fill(copy_map, y, x);
-    //map_printf(copy_map);
     accessible_control(copy_map);
     //map_control_flood_fill(copy_map);
     //free_all(copy_map);

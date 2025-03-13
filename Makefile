@@ -6,33 +6,37 @@
 #    By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 08:19:37 by makpolat          #+#    #+#              #
-#    Updated: 2025/03/09 00:17:07 by makpolat         ###   ########.fr        #
+#    Updated: 2025/03/13 13:50:29 by makpolat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	so_long
+MLX_LIB=minilibx/libmlx.a
 
 SRC	= so_long.c \
 	get_next_line.c \
 	so_long_utils.c \
 	control.c \
-	flood_fill_control.c
+	flood_fill_control.c \
+	mlx_start.c 
 
 OBJS = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -g 
 RM = rm -f
 AR = ar crs
+MLX_FLAGS=-L minilibx -lmlx -L/usr/X11R6/lib -lXext -lX11 -lm -lbsd
 
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	make -C ./minilibx -s
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(MLX_LIB)
 
 clean:
-	@make clean -C minilibx-linux/
+	@make clean -C minilibx/
 	@$(RM) $(OBJS)
 
 fclean:	clean
