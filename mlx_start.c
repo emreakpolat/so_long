@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:59:55 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/14 12:36:52 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:15:04 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,30 +73,21 @@ static void mlx_all_add(char **map, t_general *game)
 
 static int character_move(int keycode, t_general *game)
 {
+    if (keycode == 65307)
+        exit(EXIT_SUCCESS);
     if (keycode == 119)
-    {
-        game->map[game->player_y][game->player_x] = '0';
-        game->map[game->player_y - 1][game->player_x] = 'P';
-        game->player_y -= 1;
-    }
+        player_up(game);
     if (keycode == 100)
-    {
-        game->map[game->player_y][game->player_x] = '0';
-        game->map[game->player_y][game->player_x + 1] = 'P';
-        game->player_x += 1;
-    }
+        player_left(game);
     if (keycode == 97)
-    {
-        game->map[game->player_y][game->player_x] = '0';
-        game->map[game->player_y][game->player_x - 1] = 'P';
-        game->player_x -= 1;
-    }
+        player_right(game);
     if (keycode == 115)
-    {
-        game->map[game->player_y][game->player_x] = '0';
-        game->map[game->player_y + 1][game->player_x] = 'P';
-        game->player_y += 1;
-    }
+       player_down(game);
+    
+
+    
+    printf("collectible: %d\n", game->collectible);
+    printf("collected: %d\n", game->collected);
     mlx_all_add(game->map, game);
     return (0);
 }
@@ -104,7 +95,7 @@ static int character_move(int keycode, t_general *game)
 t_general create_map(t_general game, char **map)
 {
     find_height_and_widht(map, &game);
-    printf("%d\n", game.player_y);
+
     game.map = map;
     game.init=mlx_init();
     game.win=mlx_new_window(game.init, (64 * game.game_width) ,(64 * game.game_height) ,"hollao WOrld42");

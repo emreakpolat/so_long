@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:35 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/14 12:14:11 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:00:27 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ void error(char *str);
 void map_control(char **map);
 void flood_fill_check(char **map, int i, int x, int y);
 
-
+void player_up(t_general *game);
+void player_down(t_general *game);
+void player_left(t_general *game);
+void player_right(t_general *game);
 t_general create_map(t_general game, char **map);
 //sil
 void map_printf(char **map);

@@ -6,7 +6,7 @@
 #    By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 08:19:37 by makpolat          #+#    #+#              #
-#    Updated: 2025/03/13 15:49:29 by makpolat         ###   ########.fr        #
+#    Updated: 2025/03/14 13:54:17 by makpolat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRC	= so_long.c \
 	so_long_utils.c \
 	control.c \
 	flood_fill_control.c \
-	mlx_start.c 
+	mlx_start.c \
+	player_moves.c 
 
 OBJS = $(SRC:.c=.o)
 
