@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:59:55 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/14 14:15:04 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:56:51 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,14 @@ static int character_move(int keycode, t_general *game)
     return (0);
 }
 
+int	close_window(t_general *maps)
+{
+
+	mlx_destroy_window(maps->init, maps->win);
+	mlx_destroy_display(maps->init);
+	exit(0);
+}
+
 t_general create_map(t_general game, char **map)
 {
     find_height_and_widht(map, &game);
@@ -102,6 +110,7 @@ t_general create_map(t_general game, char **map)
     mlx_file_add(&game);
     mlx_all_add(map, &game);
     mlx_key_hook(game.win,character_move,&game);
+	mlx_hook(game.win, 17, 0, close_window, &game);
     mlx_loop(game.init);
     
     
