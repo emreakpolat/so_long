@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:35 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/14 12:04:16 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/14 12:14:11 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct so_long
     int player_x;
     int player_y;
     int collectible;
+    int collected;
+    int moves;
     
 } t_general;
 
