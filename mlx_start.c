@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:59:55 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/13 17:56:25 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/14 12:11:59 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ static void mlx_all_add(char **map, t_general *game)
         while (map[i][j])
         {
             if (map[i][j] == '1')
-                mlx_put_image_to_window(game->init, game->win, game->wall, j * 64, i * 64);
+                mlx_put_image_to_window(game->init, game->win, game->wall, (j * 64), (i * 64));
             else if(map[i][j] == 'P')
-                mlx_put_image_to_window(game->init, game->win, game->character, j * 64, i * 64);
+                mlx_put_image_to_window(game->init, game->win, game->character, (j * 64), (i * 64));
             else if(map[i][j] == 'C')
-                mlx_put_image_to_window(game->init,game->win, game->coin, j * 64, i * 64);
+                mlx_put_image_to_window(game->init,game->win, game->coin, (j * 64), (i * 64));
             else if(map[i][j] == 'E')
-                mlx_put_image_to_window(game->init,game->win, game->door, j * 64, i * 64);
+                mlx_put_image_to_window(game->init,game->win, game->door, (j * 64), (i * 64));
             else if(map[i][j] == '0')
-                mlx_put_image_to_window(game->init,game->win, game->floor, j * 64, i * 64);
+                mlx_put_image_to_window(game->init,game->win, game->floor, (j * 64), (i * 64));
             j++;
         }
         i++;
@@ -74,7 +74,8 @@ static void mlx_all_add(char **map, t_general *game)
 t_general create_map(t_general game, char **map)
 {
     find_height_and_widht(map, &game);
-
+    printf("%d\n", game.player_y);
+    
     game.init=mlx_init();
     game.win=mlx_new_window(game.init, (64 * game.game_width) ,(64 * game.game_height) ,"hollao WOrld42");
     mlx_file_add(&game);

@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:26 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/13 13:56:17 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/14 12:11:21 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,45 @@ static char **gnl_read(int fd, char **av)
     return (map);
 }
 
-void map_printf(char **map)
+static void     find_collectible_and_player(t_general *game, char **map)
 {
     int i;
-    i=0;
+    int j;
 
-    while (*map)
+    i = 0;
+    game->player_x = 0;
+    game->player_y = 0;
+    game->collectible = 0;
+    while (map[i])
     {
-        printf("%s",*map);
-        map++;
+        j = 0;
+        while (map[i][j])
+        {
+            if (map[i][j] == 'P')
+            {
+                game->player_y = i;
+                game->player_x = j;
+            }
+            else if(map[i][j] == 'C')
+                game->collectible++;
+            j++;
+        }
+        i++;
     }
+}
+
+static int ft_strlen_for_map(char **map)
+{
+    int i;
+
+    i = 0;
+    while (map[i])
+        i++;
+    return (i);
 }
 
 int main(int ac, char **av)
 {
-    int i;
     int fd;
     char **map;
     t_general game;
@@ -70,10 +94,8 @@ int main(int ac, char **av)
     if (ac == 2)
     {
         map_control(map);
-        i = 0;
-        while (map[i])
-            i++;
-        flood_fill_check(map, i, 0, 0);
+        flood_fill_check(map, ft_strlen_for_map(map), 0, 0);
+        find_collectible_and_player(&game, map);
         game = create_map(game, map);
     }
     else
