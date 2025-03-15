@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 12:40:59 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/14 14:24:29 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/15 13:10:35 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void player_up(t_general *game)
             game->collected++;
         if ((game->map[game->player_y - 1][game->player_x] == 'E') && (game->collectible == game->collected))
         {
+            printf("Awesome you cut all the skeletons!");
             exit(EXIT_SUCCESS);
         }
         if (game->map[game->player_y - 1][game->player_x] == 'E' && (game->collectible != game->collected))
@@ -30,6 +31,8 @@ void player_up(t_general *game)
         game->map[game->player_y][game->player_x] = '0';
         game->map[game->player_y - 1][game->player_x] = 'P';
         game->player_y -= 1;
+        game->moves++;
+        printf("moves: %d\n", game->moves);
     }
 }
 void player_down(t_general *game)
@@ -40,15 +43,18 @@ void player_down(t_general *game)
             game->collected++;
         if ((game->map[game->player_y + 1][game->player_x] == 'E') && (game->collectible == game->collected))
         {
+            printf("Awesome you cut all the skeletons!");
             exit(EXIT_SUCCESS);
         }
          if (game->map[game->player_y + 1][game->player_x] == 'E' && (game->collectible != game->collected))
         {
             return ;
         }
-       game->map[game->player_y][game->player_x] = '0';
+        game->map[game->player_y][game->player_x] = '0';
         game->map[game->player_y + 1][game->player_x] = 'P';
         game->player_y += 1;
+        game->moves++;
+        printf("moves: %d\n", game->moves);
     }
 }
 
@@ -60,6 +66,7 @@ void player_left(t_general *game)
             game->collected++;
         if ((game->map[game->player_y][game->player_x + 1] == 'E') && (game->collectible == game->collected))
         {
+            printf("Awesome you cut all the skeletons!");
             exit(EXIT_SUCCESS);
         }
          if (game->map[game->player_y][game->player_x + 1] == 'E' && (game->collectible != game->collected))
@@ -69,6 +76,8 @@ void player_left(t_general *game)
         game->map[game->player_y][game->player_x] = '0';
         game->map[game->player_y][game->player_x + 1] = 'P';
         game->player_x += 1;
+        game->moves++;
+        printf("moves: %d\n", game->moves);
     }
 }
 
@@ -81,6 +90,7 @@ void player_right(t_general *game)
             game->collected++;
         if ((game->map[game->player_y][game->player_x - 1] == 'E') && (game->collectible == game->collected))
         {
+            printf("Awesome you cut all the skeletons!, Congratulations\n");
             exit(EXIT_SUCCESS);
         }
          if (game->map[game->player_y][game->player_x - 1] == 'E' && (game->collectible != game->collected))
@@ -90,5 +100,7 @@ void player_right(t_general *game)
         game->map[game->player_y][game->player_x] = '0';
         game->map[game->player_y][game->player_x - 1] = 'P';
         game->player_x -= 1;
+        game->moves++;
+        printf("moves: %d\n", game->moves);
     }
 }

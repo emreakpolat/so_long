@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:59:55 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/14 15:56:51 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/15 13:16:05 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,14 @@ static int character_move(int keycode, t_general *game)
 {
     if (keycode == 65307)
         exit(EXIT_SUCCESS);
-    if (keycode == 119)
+    if (keycode == 119 || keycode == 65362)
         player_up(game);
-    if (keycode == 100)
+    if (keycode == 100 || keycode ==  65363)
         player_left(game);
-    if (keycode == 97)
+    if (keycode == 97 || keycode == 65361)
         player_right(game);
-    if (keycode == 115)
+    if (keycode == 115  || keycode == 65364)
        player_down(game);
-    
-
-    
-    printf("collectible: %d\n", game->collectible);
-    printf("collected: %d\n", game->collected);
     mlx_all_add(game->map, game);
     return (0);
 }
@@ -105,6 +100,7 @@ t_general create_map(t_general game, char **map)
     find_height_and_widht(map, &game);
 
     game.map = map;
+    game.moves = 0;
     game.init=mlx_init();
     game.win=mlx_new_window(game.init, (64 * game.game_width) ,(64 * game.game_height) ,"hollao WOrld42");
     mlx_file_add(&game);
