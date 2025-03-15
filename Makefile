@@ -6,7 +6,7 @@
 #    By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 08:19:37 by makpolat          #+#    #+#              #
-#    Updated: 2025/03/15 14:02:16 by makpolat         ###   ########.fr        #
+#    Updated: 2025/03/15 15:32:33 by makpolat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ clean:
 
 fclean:	clean
 	@make clean -C $(FT_PRINTF)
+	$(RM) $(PRINTF)
 	@$(RM) $(NAME)
 
 re:	fclean all
