@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   so_long_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:41:46 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/04 08:24:38 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/15 13:56:18 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_strlen(char *s)
+static int	ft_strlen_forgnl(char *s)
 {
 	int	i;
 
@@ -37,7 +37,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	if (!s2)
 		return (NULL);
-	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
+	str = (char *)malloc(sizeof(char) * ft_strlen_forgnl(s1) + ft_strlen_forgnl(s2) + 1);
 	if (!str)
 		return (NULL);
 	while (s1[++i] != '\0')
