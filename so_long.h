@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:35 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/15 13:55:47 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/15 15:41:14 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 #include <fcntl.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include <unistd.h>
 #include  "minilibx/mlx.h"
 #include "ft_printf/ft_printf.h"
@@ -57,6 +55,5 @@ void player_left(t_general *game);
 void player_right(t_general *game);
 t_general create_map(t_general game, char **map);
 //sil
-void map_printf(char **map);
 
 #endif

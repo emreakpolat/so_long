@@ -6,7 +6,7 @@
 #    By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 08:19:37 by makpolat          #+#    #+#              #
-#    Updated: 2025/03/15 15:32:33 by makpolat         ###   ########.fr        #
+#    Updated: 2025/03/15 15:47:24 by makpolat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,8 @@ SRC	= so_long.c \
 OBJS = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS = -g 
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
-AR = ar crs
 MLX_FLAGS=-L minilibx -lmlx -L/usr/X11R6/lib -lXext -lX11 -lm -lbsd
 FT_PRINTF = ft_printf
 PRINTF = $(FT_PRINTF)/libftprintf.a
