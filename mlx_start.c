@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:59:55 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/15 14:57:54 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/16 12:46:14 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,40 @@ static int character_move(int keycode, t_general *game)
     return (0);
 }
 
+void free_all(t_general *game)
+{
+    int i;
+    
+    i = 0;
+    if (game->map)
+    {
+        while (game->map[i])
+        {
+            free(game->map[i]);
+            i++;
+        }
+        game->map = NULL;
+        free(game->map);
+    }
+    mlx_destroy_image(game->init, game->wall);
+    free(game->wall);
+    mlx_destroy_image(game->init, game->character);
+    free(game->character);
+    if (game->win)
+        mlx_destroy_window(game->init, game->win);
+    if (game->init)
+        mlx_destroy_display(game->init);
+    free(game->win);
+    free(game->init);
+    free(game);
+}
+
 int	close_window(t_general *maps)
 {
 
 	mlx_destroy_window(maps->init, maps->win);
 	mlx_destroy_display(maps->init);
+    free_all(maps);
 	exit(0);
 }
 
