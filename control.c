@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/16 17:45:18 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:50:00 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void coin_check(char **map)
                 coin_count++;
             j++;
         }
-        i++;
+        i++;  
     }
     if (coin_count < 1)
     {
