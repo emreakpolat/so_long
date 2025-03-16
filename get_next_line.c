@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:42:05 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/04 08:27:18 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/16 15:39:49 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*retention(char *s, char c)
 		free(s);
 		return (NULL);
 	}
-	str = (char *)malloc((ft_strlen(s) - i) + 1);
+	str = (char *)malloc((ft_strlen_forgnl(s) - i) + 1);
 	if (!str)
 		return (NULL);
 	i++;
@@ -98,11 +98,39 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = linefunc(fd, line);
-	if (line)
+	if (!line)
 	{
-		str = readfunc(line, '\n');
-		line = retention(line, '\n');
-		return (str);
+		return (NULL);
 	}
-	return (NULL);
+	str = readfunc(line, '\n');
+	line = retention(line, '\n');
+	if (line && *line == '\0')
+	{
+        free(line);
+        line = NULL;
+	}
+	return (str);
 }
+
+#include <stdio.h>
+
+// int main()
+// {
+//     int fd = open("emre.txt", O_CREAT | O_RDWR, 0777);
+//     if (fd == -1)
+//         return 1;
+
+//     char *result;
+//     while ((result = get_next_line(fd)) != NULL)
+//     {
+//         printf(" %s", result);
+//         free(result);  // get_next_line'dan döndürülen belleği serbest bırak
+//     }
+
+//     close(fd);  // Dosyayı kapat
+
+//     // Programın sonunda line değişkenini serbest bırak
+
+
+//     return 0;
+// }

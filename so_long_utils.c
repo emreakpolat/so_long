@@ -6,13 +6,13 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:41:46 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/15 13:56:18 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/16 15:35:15 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	ft_strlen_forgnl(char *s)
+int	ft_strlen_forgnl(char *s)
 {
 	int	i;
 
@@ -45,7 +45,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[j])
 		str[i++] = s2[j++];
 	str[i] = '\0';
-	free(s1);
+	if (s1)
+		free(s1);
 	return (str);
 }
 
