@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:26 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/16 15:39:57 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:10:31 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static char **gnl_read(int fd, char **av)
 //     return (i);
 // }
 
-static void free_map(char **map)
+void free_map(char **map)
 {
     int i = 0;
     if (!map)
@@ -112,13 +112,16 @@ int main(int ac, char **av)
         return (1);
     }
     map = gnl_read(fd, av);
-    // if (map != NULL)
-    // {
-    //     free_map(map);
-    //     close(fd);
-    //     return (1);
-    // }
-    //     //map_control(map);
+    if (map == NULL)
+    {
+        ft_printf("burada1\n");
+        free_map(map);
+        close(fd);
+        return (1);
+    }
+        map_control(map);
+        ft_printf("burada2\n");
+
     //     //flood_fill_check(map, ft_strlen_for_map(map), 0, 0);
     //     //find_collectible_and_player(&game, map);
     //     //game = create_map(game, map);

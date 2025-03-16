@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:35 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/16 15:37:17 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:10:43 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void error(char *str);
 void map_control(char **map);
 void flood_fill_check(char **map, int i, int x, int y);
 int	ft_strlen_forgnl(char *s);
-
+void free_map(char **map);
 
 
 

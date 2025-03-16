@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/13 13:45:35 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:45:18 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ static void coin_check(char **map)
         i++;
     }
     if (coin_count < 1)
-        error("Error.\n There is no coin!\n");
+    {
+        free_map(map);
+        error("Error.\nThere is no coin!\n");
+    }
 }
 
 static void     character_check(char **map)
@@ -54,17 +57,15 @@ static void     character_check(char **map)
         }
         i++;
     }
-    if (character_count < 1)
-        error("Error.\n There is no character\n");
-    if (character_count > 1)
-        error("Error\nToo many character.\n");
+    if (character_count != 1)
+    {
+        free_map(map);
+        error("Error\nIt is mandatory to have a only one character on the map\n");
+    }
 }
 
-static void     door_check(char **map)
+static void     door_check(char **map, int i, int j, int door_count)
 {
-    int i;
-    int j;
-    int door_count;
 
     i = 0;
     door_count = 0;
@@ -75,67 +76,75 @@ static void     door_check(char **map)
         {
             if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'P' 
             && map[i][j] != 'E' && map[i][j] != 'C' && map[i][j] != '\n')
-                error("Error.\n This is not a map\n");
+            {
+                free_map(map);            
+                error("Error.\nThis is not a map\n");
+            }
             if (map[i][j] == 'E')
                 door_count++;
             j++;
         }
         i++;
     }
-    if (door_count < 1)
-        error("Error.\nThere is no exit door\n");
-    if (door_count > 1)
-        error("Error\nToo many exit door.\n");
+   if (door_count != 1)
+    {
+        free_map(map);
+        error("Error\nIt is mandatory to have a only one door on the map\n");
+    }
 }
 
-static void close_check(char **map, int y, int i)
+static void close_check(char **map, int y, int i, int j)
 {
-    int j;
-    
     j = 0;    
     while (map[i])
     {
         while ((map[0][j] != '\n' && map[0][j] != '\0'))
         {
             if (map[0][j] != '1')
-                error("Error.\n Map is not close\n");
+            {
+                free_map(map);
+                error("Error.\nMap is not close\n");
+            }
             j++;
         }
         j = 0;
         while ((map[y - 1][j] != '\n' && map[y - 1][j] != '\0'))
         {
             if (map[y - 1][j] != '1')
-                error("Error.\n Map is not close\n");
+            {
+                free_map(map);
+                error("Error.\nMap is not close\n");
+            }
             j++;
         }
         i++;
     }
 }
 
-static void     rectangle_check(char **map)
+static void     rectangle_check(char **map, int i, int x, int y)
 {
-    int i;
     int j;
-    int x;
-    int y;
 
-    i = 0;
-    x = 0;
-    y = 0;
     while (map[i][x] != '\n')
         x++;
     while (map[y] != NULL && map[y][0] != '\n' && map[y][0] != '\0')
         y++;
-    close_check(map, y , i);
+    close_check(map, y , i, 0);
     while (map[i])
     {
         j = 0;
         while (map[i][j] != '\n' && map[i][j] != '\0')
             j++;
         if (j != x)
-            error("Error.\n Map is not rectangular\n");
+        {
+            free_map(map);
+            error("Error.\nMap is not rectangular\n");
+        }
         if((map[i][j - 1] != '1') || (map[i][0] != '1'))
-            error("Error.\n Map is not close\n");
+        {
+            free_map(map);
+            error("Error.\nMap is not close\n");
+        }
         i++;
     }
 }
@@ -145,15 +154,17 @@ void    map_control(char **map)
 {
     if (map == NULL || *map == NULL)
     {
-        error("Error.\n There is no map\n");
+        free_map(map);
+        error("Error.\nThere is no map\n");
     }
-    while (**map == '\n')
+    if (**map == '\n')
     {
-        error("Error.\n Map is newline\n");
+        free_map(map);
+        error("Error.\nMap is newline\n");
     }
     coin_check(map);
     character_check(map);
-    door_check(map);
-    rectangle_check(map);    
+    door_check(map, 0, 0, 0);
+    rectangle_check(map, 0, 0, 0);    
 }
 
