@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 12:40:59 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/15 13:57:14 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:51:58 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void player_up(t_general *game)
             game->collected++;
         if ((game->map[game->player_y - 1][game->player_x] == 'E') && (game->collectible == game->collected))
         {
+            close_window(game);
             ft_printf("Awesome you cut all the skeletons!, Congratulations\n");
             exit(EXIT_SUCCESS);
         }
@@ -45,6 +46,7 @@ void player_down(t_general *game)
             game->collected++;
         if ((game->map[game->player_y + 1][game->player_x] == 'E') && (game->collectible == game->collected))
         {
+            close_window(game);
             ft_printf("Awesome you cut all the skeletons!, Congratulations\n");
             exit(EXIT_SUCCESS);
         }
@@ -68,6 +70,7 @@ void player_left(t_general *game)
             game->collected++;
         if ((game->map[game->player_y][game->player_x + 1] == 'E') && (game->collectible == game->collected))
         {
+            close_window(game);
             ft_printf("Awesome you cut all the skeletons!, Congratulations\n");
             exit(EXIT_SUCCESS);
         }
@@ -92,6 +95,7 @@ void player_right(t_general *game)
             game->collected++;
         if ((game->map[game->player_y][game->player_x - 1] == 'E') && (game->collectible == game->collected))
         {
+            close_window(game);
             ft_printf("Awesome you cut all the skeletons!, Congratulations\n");
             exit(EXIT_SUCCESS);
         }

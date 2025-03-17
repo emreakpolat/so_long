@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:35 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/17 12:18:59 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:50:56 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void flood_fill_check(char **map, int i, int x, int y);
 int	ft_strlen_forgnl(char *s);
 void free_map(char **map);
 void free_all(t_general *game);
-
+int close_window(t_general *game);
 
 
 void player_up(t_general *game);

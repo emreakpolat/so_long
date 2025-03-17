@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:26 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/17 12:40:30 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:42:50 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int main(int ac, char **av)
     char **map;
     t_general game;
 
+    int i = 0;
     if (ac != 2)
         exit(1);
     fd = open(av[1], O_RDONLY);
@@ -118,11 +119,10 @@ int main(int ac, char **av)
         close(fd);
         return (1);
     }
-        map_control(map);
-        flood_fill_check(map, ft_strlen_for_map(map), 0, 0);
-        find_collectible_and_player(&game, map);
-        game = create_map(game, map);
-    free_map(map);
-    free_all(&game);
+    map_control(map);
+    flood_fill_check(map, ft_strlen_for_map(map), 0, 0);
+    find_collectible_and_player(&game, map);
+    game = create_map(game, map);
+    //free_all(&game);
     close(fd);
 }
