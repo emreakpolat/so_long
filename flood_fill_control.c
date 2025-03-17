@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/17 12:00:40 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:39:38 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 static char **flood_fill(char **map, int y, int x)
 {
     if (map[y][x] == '1')
-        return (0);
-
-    if (map[y][x] == 'E')
         return (0);
 
     map[y][x] = '1';
@@ -65,7 +62,7 @@ static void accessible_control(char **map,char **original_map)
         j = 0;
         while (map[i][j])
         {
-            if (map[i][j] == 'P' || map[i][j] == 'C')
+            if (map[i][j] == 'P' || map[i][j] == 'E' ||  map[i][j] == 'C' )
             {
                 free_map(map);
                 free_map(original_map);
@@ -76,6 +73,8 @@ static void accessible_control(char **map,char **original_map)
         i++;
     }
 }
+
+
 
 void flood_fill_check(char **map, int i, int x, int y)
 {

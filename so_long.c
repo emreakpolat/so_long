@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:26 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/17 14:56:27 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:29:23 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void free_map(char **map)
     free(map);
     
 }
+
 static void av_check(char **av)
 {
     int i;
@@ -104,10 +105,10 @@ static void av_check(char **av)
     i = 0;
     while (av[i])
     {
-        if ((i != 2))
-            error("Error\nToo many arguments\n");
         i++;
     }
+    if ((i != 2))
+        error("Error\nToo many arguments\n");
     i = 0;
     while (av[1])
     {
@@ -118,8 +119,9 @@ static void av_check(char **av)
         else
             break;
     }
-    
+
 }
+
 int main(int ac, char **av)
 {
     int fd;
