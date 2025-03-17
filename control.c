@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/16 17:50:00 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:47:03 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ void    map_control(char **map)
     coin_check(map);
     character_check(map);
     door_check(map, 0, 0, 0);
-    rectangle_check(map, 0, 0, 0);    
+    rectangle_check(map, 0, 0, 0);
+    
 }
 

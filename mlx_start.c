@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:59:55 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/17 13:47:55 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:39:36 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void find_height_and_widht(char **map, t_general *game)
     while (map[i])
     {
         j = 0;
-        while (map[i][j])
+        while (map[i][j] != '\n' && map[i][j])
             j++;
         i++;
     }
@@ -80,6 +80,7 @@ int close_window(t_general *game)
 	mlx_destroy_image(game->init, game->wall);
 	mlx_destroy_window(game->init, game->win);
 	mlx_destroy_display(game->init);
+    free_map(game->map);
 	free(game->init);
     exit(0);
 }
@@ -95,32 +96,14 @@ static int character_move(int keycode, t_general *game)
     if (keycode == 119 || keycode == 65362)
         player_up(game);
     if (keycode == 100 || keycode ==  65363)
-        player_left(game);
-    if (keycode == 97 || keycode == 65361)
         player_right(game);
+    if (keycode == 97 || keycode == 65361)
+        player_left(game);
     if (keycode == 115  || keycode == 65364)
        player_down(game);
     mlx_all_add(game->map, game);
     return (0);
 }
-
-
-// void free_all(t_general *game)
-// {
-//     if (game->win)
-//         mlx_destroy_window(game->init, game->win);
-//     if (game->init)
-//         mlx_destroy_display(game->init);
-//     free_map(game->map);
-//     free(game->init);
-//     free(game->character);
-//     free(game->coin);
-//     free(game->door);
-//     free(game->floor);
-//     free(game->wall);
-//     free(game);
-// }
-
 
 t_general create_map(t_general game, char **map)
 {
@@ -132,10 +115,10 @@ t_general create_map(t_general game, char **map)
     game.win=mlx_new_window(game.init, (64 * game.game_width) ,(64 * game.game_height) ,"hollao WOrld42");
     mlx_file_add(&game);
     mlx_all_add(map, &game);
-    free_map(map);
     mlx_key_hook(game.win,character_move,&game);
 	mlx_hook(game.win, 17, 1, close_window, &game);
     mlx_loop(game.init);
+    //free_map(map);
     
     return (game);
 }
