@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:26 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/16 17:10:31 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 12:40:30 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,42 +46,42 @@ static char **gnl_read(int fd, char **av)
     return (map);
 }
 
-// static void     find_collectible_and_player(t_general *game, char **map)
-// {
-//     int i;
-//     int j;
+static void     find_collectible_and_player(t_general *game, char **map)
+{
+    int i;
+    int j;
 
-//     i = 0;
-//     game->player_x = 0;
-//     game->player_y = 0;
-//     game->collectible = 0;
-//     while (map[i])
-//     {
-//         j = 0;
-//         while (map[i][j])
-//         {
-//             if (map[i][j] == 'P')
-//             {
-//                 game->player_y = i;
-//                 game->player_x = j;
-//             }
-//             else if(map[i][j] == 'C')
-//                 game->collectible++;
-//             j++;
-//         }
-//         i++;
-//     }
-// }
+    i = 0;
+    game->player_x = 0;
+    game->player_y = 0;
+    game->collectible = 0;
+    while (map[i])
+    {
+        j = 0;
+        while (map[i][j])
+        {
+            if (map[i][j] == 'P')
+            {
+                game->player_y = i;
+                game->player_x = j;
+            }
+            else if(map[i][j] == 'C')
+                game->collectible++;
+            j++;
+        }
+        i++;
+    }
+}
 
-// static int ft_strlen_for_map(char **map)
-// {
-//     int i;
+static int ft_strlen_for_map(char **map)
+{
+    int i;
 
-//     i = 0;
-//     while (map[i])
-//         i++;
-//     return (i);
-// }
+    i = 0;
+    while (map[i])
+        i++;
+    return (i);
+}
 
 void free_map(char **map)
 {
@@ -101,7 +101,7 @@ int main(int ac, char **av)
 {
     int fd;
     char **map;
-    //t_general game;
+    t_general game;
 
     if (ac != 2)
         exit(1);
@@ -114,17 +114,15 @@ int main(int ac, char **av)
     map = gnl_read(fd, av);
     if (map == NULL)
     {
-        ft_printf("burada1\n");
         free_map(map);
         close(fd);
         return (1);
     }
         map_control(map);
-        ft_printf("burada2\n");
-
-    //     //flood_fill_check(map, ft_strlen_for_map(map), 0, 0);
-    //     //find_collectible_and_player(&game, map);
-    //     //game = create_map(game, map);
+        flood_fill_check(map, ft_strlen_for_map(map), 0, 0);
+        find_collectible_and_player(&game, map);
+        game = create_map(game, map);
     free_map(map);
+    free_all(&game);
     close(fd);
 }

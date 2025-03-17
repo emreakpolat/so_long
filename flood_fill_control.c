@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/13 13:34:18 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 12:00:40 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,32 +53,7 @@ static char **map_copy(char **cpy_map, char **map, int size)
     return (cpy_map);
 }
 
-// void map_control_flood_fill(char **map)
-// {
-//     int i;
-//     int j;
-//     int coin_count;
-//     int door_count;
-
-//     i = 0;
-//     j = 0;
-//     coin_count = 0;
-//     door_count = 0;
-//     while (map[i])
-//     {
-//         j = 0;
-//         while (map[i][j])
-//         {
-//             if (map[i][j] != '1' && map[i][j] != '\0' && map[i][j] != '\n')
-//                 error("Error. RRRRInaccessible location on the map.\n");
-//             j++;
-//         }
-//         i++;
-//     }
-    
-// }
-
-static void accessible_control(char **map)
+static void accessible_control(char **map,char **original_map)
 {
     int i;
     int j;
@@ -92,6 +67,8 @@ static void accessible_control(char **map)
         {
             if (map[i][j] == 'P' || map[i][j] == 'C')
             {
+                free_map(map);
+                free_map(original_map);
                 error("Error\nInaccessible location on the map\n");
             }
             j++;
@@ -117,7 +94,6 @@ void flood_fill_check(char **map, int i, int x, int y)
     }
     
     copy_map = flood_fill(copy_map, y, x);
-    accessible_control(copy_map);
-    //map_control_flood_fill(copy_map);
-    //free_all(copy_map);
+    accessible_control(copy_map, map);
+    free_map(copy_map);
 }

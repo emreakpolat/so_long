@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:59:55 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/16 12:46:14 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 12:44:18 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void mlx_all_add(char **map, t_general *game)
     
 }
 
+
 static int character_move(int keycode, t_general *game)
 {
     if (keycode == 65307)
@@ -87,42 +88,31 @@ static int character_move(int keycode, t_general *game)
     return (0);
 }
 
+
 void free_all(t_general *game)
 {
-    int i;
-    
-    i = 0;
-    if (game->map)
-    {
-        while (game->map[i])
-        {
-            free(game->map[i]);
-            i++;
-        }
-        game->map = NULL;
-        free(game->map);
-    }
-    mlx_destroy_image(game->init, game->wall);
-    free(game->wall);
-    mlx_destroy_image(game->init, game->character);
-    free(game->character);
     if (game->win)
         mlx_destroy_window(game->init, game->win);
     if (game->init)
         mlx_destroy_display(game->init);
-    free(game->win);
+    free_map(game->map);
     free(game->init);
     free(game);
 }
 
-int	close_window(t_general *maps)
+int close_window(t_general *maps)
 {
-
+    mlx_destroy_image(maps->init, maps->character);
+	mlx_destroy_image(maps->init, maps->coin);
+	mlx_destroy_image(maps->init, maps->floor);
+	mlx_destroy_image(maps->init, maps->door);
+	mlx_destroy_image(maps->init, maps->wall);
 	mlx_destroy_window(maps->init, maps->win);
 	mlx_destroy_display(maps->init);
-    free_all(maps);
-	exit(0);
+	free(maps->init);
+    exit(0);
 }
+
 
 t_general create_map(t_general game, char **map)
 {
@@ -130,14 +120,14 @@ t_general create_map(t_general game, char **map)
 
     game.map = map;
     game.moves = 0;
-    game.init=mlx_init();
+    game.init = mlx_init();
     game.win=mlx_new_window(game.init, (64 * game.game_width) ,(64 * game.game_height) ,"hollao WOrld42");
     mlx_file_add(&game);
     mlx_all_add(map, &game);
     mlx_key_hook(game.win,character_move,&game);
 	mlx_hook(game.win, 17, 1, close_window, &game);
     mlx_loop(game.init);
-    
+
     
     return (game);
 }
