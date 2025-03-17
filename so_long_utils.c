@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:41:46 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/16 15:35:15 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:14:14 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	if (!s2)
 		return (NULL);
-	str = (char *)malloc(sizeof(char) * ft_strlen_forgnl(s1) + ft_strlen_forgnl(s2) + 1);
+	str = (char *)malloc(sizeof(char) * ft_strlen_forgnl(s1)
+			+ ft_strlen_forgnl(s2) + 1);
 	if (!str)
 		return (NULL);
 	while (s1[++i] != '\0')
@@ -64,4 +65,18 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	return (NULL);
+}
+
+int	close_window(t_general *game)
+{
+	mlx_destroy_image(game->init, game->character);
+	mlx_destroy_image(game->init, game->coin);
+	mlx_destroy_image(game->init, game->floor);
+	mlx_destroy_image(game->init, game->door);
+	mlx_destroy_image(game->init, game->wall);
+	mlx_destroy_window(game->init, game->win);
+	mlx_destroy_display(game->init);
+	free_map(game->map);
+	free(game->init);
+	exit(0);
 }

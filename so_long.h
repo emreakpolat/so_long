@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:35 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/17 13:50:56 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:15:44 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_strlen_forgnl(char *s);
 void free_map(char **map);
 void free_all(t_general *game);
 int close_window(t_general *game);
-
+int	character_move(int keycode, t_general *game);
 
 void player_up(t_general *game);
 void player_down(t_general *game);
