@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:26 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/17 15:29:23 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:43:25 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,16 +98,11 @@ void free_map(char **map)
     
 }
 
-static void av_check(char **av)
+static void av_check(int ac, char **av)
 {
     int i;
-    
-    i = 0;
-    while (av[i])
-    {
-        i++;
-    }
-    if ((i != 2))
+
+    if (ac != 2)
         error("Error\nToo many arguments\n");
     i = 0;
     while (av[1])
@@ -128,7 +123,7 @@ int main(int ac, char **av)
     char **map;
     t_general game;
 
-    av_check(av);
+    av_check(ac, av);
     fd = open(av[1], O_RDONLY);
     if (fd == -1)
     {
