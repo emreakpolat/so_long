@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:42:05 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/18 12:02:55 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:30:09 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char	*linefunc(int fd, char *s)
 	return (s);
 }
 
-char	*get_next_line(int fd)
+static char	*get_next_line(int fd)
 {
 	char		*str;
 	static char	*line;
