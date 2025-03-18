@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:42:05 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/16 17:06:13 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:36:19 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,30 @@ char	*get_next_line(int fd)
         line = NULL;
 	}
 	return (str);
+}
+
+char	**gnl_read(int fd, char **av)
+{
+	int		i;
+	int		line_count;
+	char	*line;
+	char	**map;
+
+	line_count = 0;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		free(line);
+		line_count++;
+	}
+	close(fd);
+	map =(char **)malloc(sizeof(char *) * (line_count + 1));
+	fd = open(av[1], O_RDONLY);
+	i = 0;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		map[i] = line;
+		i++;
+	}
+	map[i] = NULL;
+	return (map);
 }

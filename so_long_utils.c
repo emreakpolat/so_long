@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:41:46 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/17 16:14:14 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:35:02 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,32 @@ int	close_window(t_general *game)
 	free_map(game->map);
 	free(game->init);
 	exit(0);
+}
+
+void	find_collectible_and_player(t_general *game, char **map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	game->player_x = 0;
+	game->player_y = 0;
+	game->collectible = 0;
+	game->collected = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'P')
+			{
+				game->player_y = i;
+				game->player_x = j;
+			}
+			else if(map[i][j] == 'C')
+				game->collectible++;
+			j++;
+		}
+		i++;
+	}
 }

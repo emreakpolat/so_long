@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:59:55 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/17 16:15:27 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:09:36 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	put_image(t_general *game, char **map, int i, int j)
 			game->floor, (j * 64), (i * 64));
 }
 
-static void	mlx_all_add(char **map, t_general *game)
+void	mlx_all_add(char **map, t_general *game)
 {
 	int	i;
 	int	j;
