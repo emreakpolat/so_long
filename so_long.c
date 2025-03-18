@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:26 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/18 11:46:52 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:05:37 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	av_check(int ac, char **av)
 	int	i;
 
 	if (ac != 2)
-		error("Error\nToo many arguments\n");
+		error("Error\nWrong number of arguaments \n");
 	i = 0;
 	while (av[1])
 	{
