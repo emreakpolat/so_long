@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:35 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/18 11:36:36 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:46:30 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			character_move(int keycode, t_general *game);
 char		*get_next_line(int fd);
 char		*ft_strjoin(char *s1, char *s2);
 char		*ft_strchr(const char *s, int c);
-char		**gnl_read(int fd, char **av);
+char		**gnl_read(int fd, char **av, int i);
 void		error(char *str);
 void		free_map(char **map);
 void		free_all(t_general *game);

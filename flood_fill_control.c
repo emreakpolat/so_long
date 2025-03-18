@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:43:30 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/18 11:15:46 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:51:14 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	rectangle_check(char **map, int i, int x, int y)
 		x++;
 	while (map[y] != NULL && map[y][0] != '\n' && map[y][0] != '\0')
 		y++;
-	close_check(map, y , i, 0);
+	close_check(map, y, i, 0);
 	while (map[i])
 	{
 		j = 0;
@@ -31,7 +31,7 @@ void	rectangle_check(char **map, int i, int x, int y)
 			free_map(map);
 			error("Error.\nMap is not rectangular\n");
 		}
-		if((map[i][j - 1] != '1') || (map[i][0] != '1'))
+		if ((map[i][j - 1] != '1') || (map[i][0] != '1'))
 		{
 			free_map(map);
 			error("Error.\nMap is not close\n");
@@ -75,10 +75,10 @@ static char	**map_copy(char **cpy_map, char **map, int size)
 	return (cpy_map);
 }
 
-static void accessible_control(char **map,char **original_map)
+static void	accessible_control(char **map, char **original_map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -87,7 +87,7 @@ static void accessible_control(char **map,char **original_map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'P' || map[i][j] == 'E' ||  map[i][j] == 'C' )
+			if (map[i][j] == 'P' || map[i][j] == 'E' || map[i][j] == 'C')
 			{
 				free_map(map);
 				free_map(original_map);
@@ -99,14 +99,12 @@ static void accessible_control(char **map,char **original_map)
 	}
 }
 
-
-
-void flood_fill_check(char **map, int i, int x, int y)
+void	flood_fill_check(char **map, int i, int x, int y)
 {
-	char **copy_map;
+	char	**copy_map;
+
 	copy_map = NULL;
 	copy_map = map_copy(copy_map, map, (i + 1));
-
 	while (copy_map[y][x] != 'P' && copy_map[y][x] != '\0')
 	{
 		if (map[y][x] == '\n' || map[y][x] == '\0')
@@ -116,7 +114,6 @@ void flood_fill_check(char **map, int i, int x, int y)
 		}
 		x++;
 	}
-	
 	copy_map = flood_fill(copy_map, y, x);
 	accessible_control(copy_map, map);
 	free_map(copy_map);

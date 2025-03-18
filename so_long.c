@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:14:26 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/18 11:38:34 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:46:52 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int ac, char **av)
 		ft_printf("Error\nCannot open file: %s\n", av[1]);
 		return (1);
 	}
-	map = gnl_read(fd, av);
+	map = gnl_read(fd, av, 0);
 	if (map == NULL)
 	{
 		free_map(map);

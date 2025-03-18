@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:41:46 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/18 11:35:02 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:43:02 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ int	close_window(t_general *game)
 
 void	find_collectible_and_player(t_general *game, char **map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	game->player_x = 0;
@@ -101,7 +101,7 @@ void	find_collectible_and_player(t_general *game, char **map)
 				game->player_y = i;
 				game->player_x = j;
 			}
-			else if(map[i][j] == 'C')
+			else if (map[i][j] == 'C')
 				game->collectible++;
 			j++;
 		}
