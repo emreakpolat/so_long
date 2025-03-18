@@ -6,7 +6,7 @@
 /*   By: makpolat <makpolat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 08:28:01 by makpolat          #+#    #+#             */
-/*   Updated: 2025/03/18 11:18:34 by makpolat         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:53:50 by makpolat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	door_check(char **map, int i, int j, int door_count)
 	}
 }
 
-static void	close_check(char **map, int y, int i, int j)
+void	close_check(char **map, int y, int i, int j)
 {
 	j = 0;
 	while (map[i])
